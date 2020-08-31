@@ -14,6 +14,7 @@ As part of Casting Agency  system, we are building set of services that can enab
 
 This application is hosted in `https://vishyarjun-castingagency.herokuapp.com`
 
+
 ## API Behavior and Roles
 
 This application consists of 3 roles
@@ -241,6 +242,10 @@ flask run
 `Note: if you are running on a windows environment use SET instead of EXPORT above, example: set FLASK_APP = flaskr`
 
 ## Test Locally
+
+### Authentication
+
+This application requires a Bearer Token for API's to Authenticate and Authorize successfully. Bearer token for each role is available in `setup.sh`
 
 There are two ways to test this application locally.
 ### 1. POSTMAN
