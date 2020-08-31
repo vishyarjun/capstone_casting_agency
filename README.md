@@ -9,6 +9,11 @@ As part of Casting Agency  system, we are building set of services that can enab
 3) Modify the details of movies and actors
 4) Delete movies and actors.
 
+
+## URL of the application hosted in heroku
+
+This application is hosted in `https://vishyarjun-castingagency.herokuapp.com`
+
 ## API Behavior and Roles
 
 This application consists of 3 roles
@@ -196,6 +201,9 @@ Different Types of error from the application
 1. Install all the python and pip dependencies for a flask app
 2. Following dependents needs to be installed
 
+
+
+
 ```
 FLASK
 SQLALCHEMY
@@ -210,7 +218,20 @@ pip install -r requirements.txt
 
 ## Run locally
 
-To run the app locally, go to the project directory and execute below commands.
+To run the app locally, update the database set up as follows.
+
+open `config.py` comment the line 
+
+```
+SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
+```
+and uncomment the line
+
+```
+SQLALCHEMY_DATABASE_URI = 'postgres://localhost:5432/casting_agency2'
+```
+
+go to the project directory and execute below commands.
 
 ```
 export FLASK_APP = flaskr
