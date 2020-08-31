@@ -1,1 +1,1 @@
-web: gunicorn --chdir flaskr init_model:app
+web: gunicorn --chdir flaskr app
