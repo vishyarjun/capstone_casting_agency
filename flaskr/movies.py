@@ -41,7 +41,7 @@ def post_movies(jwt):
                 'success': True,
                 'id': movie.id
             })
-        except:
+        except BaseException:
             db.session.rollback()
             abort(500)
         finally:
@@ -59,8 +59,8 @@ def get_movies(jwt):
             actors = movie.actors
             actors_json = []
             response_body.append(movie.format())
-            print (response_body)
-    except:
+            print(response_body)
+    except BaseException:
         abort(500)
     return jsonify({
         'success': True,
@@ -85,21 +85,21 @@ def delete_movies(jwt, id):
 @movie_bp.route('/movie/<id>', methods=['PATCH'])
 @requires_auth('modify: movies')
 def modify_movies(jwt, id):
-        changed = False
-        movie = Movie.query.get(int(id))
-        body = request.get_json()
-        if not movie or not body:
-            abort(400)
-        if body.get('title'):
-            movie.title = body.get('title')
-            changed = True
-        if body.get('release_date'):
-            movie.release_date = body.get('release_date')
-            changed = True
-        if changed is False:
-            abort(400)
-        movie.update()
-        return jsonify({
-            'success': True,
-            'updated_movie_id': id
-        })
+    changed = False
+    movie = Movie.query.get(int(id))
+    body = request.get_json()
+    if not movie or not body:
+        abort(400)
+    if body.get('title'):
+        movie.title = body.get('title')
+        changed = True
+    if body.get('release_date'):
+        movie.release_date = body.get('release_date')
+        changed = True
+    if changed is False:
+        abort(400)
+    movie.update()
+    return jsonify({
+        'success': True,
+        'updated_movie_id': id
+    })

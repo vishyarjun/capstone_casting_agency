@@ -22,6 +22,7 @@ def index():
                     'message': 'Welcome to Casting Agency!'
                     })
 
+
 app.register_blueprint(movie_bp)
 app.register_blueprint(actor_bp)
 app.register_blueprint(error_bp)

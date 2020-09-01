@@ -17,6 +17,7 @@ class AuthError(Exception):
         self.error = error
         self.status_code = status_code
 
+
 '''
 @TODO implement get_token_auth_header() method
     it should attempt to get the header from the request
@@ -44,6 +45,7 @@ def get_token_auth_header():
 
     return array[1]
 
+
 '''
 @TODO implement check_permissions(permission, payload) method
     @INPUTS
@@ -59,11 +61,11 @@ def get_token_auth_header():
 
 def check_permissions(permission, payload):
     if (not payload.get('permissions')
-    or permission not in payload['permissions']):
+            or permission not in payload['permissions']):
         raise AuthError({
             'code': 'Not Permitted',
             'description': 'Action not allowed to be performed'
-            }, 403)
+        }, 403)
     return True
 
 
@@ -139,9 +141,9 @@ def verify_decode_jwt(token):
                 'description': 'Unable to parse authentication token.'
             }, 400)
     raise AuthError({
-                'code': 'invalid_header',
+        'code': 'invalid_header',
                 'description': 'Unable to find the appropriate key.'
-            }, 400)
+    }, 400)
 
 
 '''

@@ -8,7 +8,7 @@ movie_actor = db.Table('movie_actor',
                        db.Column('actor_id', db.Integer,
                                  db.ForeignKey('actor.id',
                                                ondelete='CASCADE'))
-                )
+                       )
 
 
 class Movie(db.Model):
@@ -18,12 +18,12 @@ class Movie(db.Model):
     release_date = db.Column(db.DateTime)
     actors = db.relationship('Actor', secondary=movie_actor,
                              backref=db.backref('movies',
-                             passive_deletes=True))
-    
+                                                passive_deletes=True))
+
     def insert(self):
         db.session.add(self)
         db.session.commit()
-  
+
     def update(self):
         db.session.commit()
 
@@ -40,7 +40,6 @@ class Movie(db.Model):
         }
 
 
-
 class Actor(db.Model):
     __tablename__ = 'actor'
     id = db.Column(db.Integer, primary_key=True)
@@ -52,7 +51,7 @@ class Actor(db.Model):
     def insert(self):
         db.session.add(self)
         db.session.commit()
-  
+
     def update(self):
         db.session.commit()
 
@@ -68,4 +67,3 @@ class Actor(db.Model):
             'age': self.age,
             'gender': self.gender
         }
-

@@ -21,8 +21,8 @@ def post_actors(jwt):
         body = request.get_json()
         response = {}
         if (not body or not body.get('first_name') or
-        not body.get('last_name') or not body.get('age') or
-        not body.get('gender')):
+            not body.get('last_name') or not body.get('age') or
+                not body.get('gender')):
             abort(400)
         actor = Actor(
             first_name=body.get('first_name'),
@@ -40,7 +40,7 @@ def post_actors(jwt):
                 'success': True,
                 'id': actor.id
             })
-        except:
+        except BaseException:
             db.session.rollback()
             abort(500)
         db.session.close()
@@ -55,7 +55,7 @@ def get_actors(jwt):
         response_body = []
         for actor in actors:
             response_body.append(actor.format())
-    except:
+    except BaseException:
         abort(500)
     return jsonify({
         'success': True,
@@ -96,8 +96,8 @@ def modify_actors(jwt, id):
         changed = True
         actor.age = body.get('age')
     if body.get('gender'):
-            changed = True
-            actor.gender = body.get('gender')
+        changed = True
+        actor.gender = body.get('gender')
     if changed is False:
         abort(400)
     actor.update()
