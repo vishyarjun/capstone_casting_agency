@@ -16,6 +16,12 @@ db.init_app(app)
 migrate = Migrate(app, db)
 
 
+@app.route('/', methods=['GET'])
+def index():
+    return jsonify({'success': True,
+                    'message': 'Welcome to Casting Agency!'
+                    })
+
 app.register_blueprint(movie_bp)
 app.register_blueprint(actor_bp)
 app.register_blueprint(error_bp)

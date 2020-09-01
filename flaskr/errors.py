@@ -11,12 +11,14 @@ def not_found(error):
         'details': 'Resource not found'
     }), 404
 
+
 @error_bp.app_errorhandler(400)
 def bad_request(error):
     return jsonify({
         'success': False,
         'details': 'Bad Request'
     }), 400
+
 
 @error_bp.app_errorhandler(AuthError)
 def unauthorized(e):
@@ -25,6 +27,7 @@ def unauthorized(e):
         'details': e.error
 
     }), 401
+
 
 @error_bp.app_errorhandler(500)
 def int_server_error(error):

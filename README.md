@@ -221,16 +221,22 @@ pip install -r requirements.txt
 
 To run the app locally, update the database set up as follows.
 
-open `config.py` comment the line 
-
-```
-SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
-```
-and uncomment the line
+open `setup.sh` comment the line and update below line
 
 ```
 SQLALCHEMY_DATABASE_URI = 'postgres://localhost:5432/casting_agency2'
 ```
+set the environment variables with `source setup.sh` command
+
+create a virtual environment with following commands
+
+```
+python3 -m venv venv
+. venv/bin/activate
+```
+`Note: If you are using windows use venv\Scripts\activate instead of . venv/bin/activate`
+
+set the environment variables with `source setup.sh` command
 
 go to the project directory and execute below commands.
 
